@@ -1,0 +1,28 @@
+ID: tinyworld
+_schema-version: '2.0'
+version: 0.0.1
+
+modules:
+ - name: tinydb
+   type: hdb
+   path: tinydb
+   requires:
+    - name: hdi_tinydb
+
+
+ - name: tinyjs
+   type: nodejs
+   path: tinyjs
+   requires:
+    - name: tinydb
+    - name: hdi_tinydb
+   provides:
+    - name: tinyjs_api
+      properties:
+         url: ${default-url}
+
+resources:
+ - name: hdi_tinydb
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
